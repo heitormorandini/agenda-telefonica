@@ -11,6 +11,7 @@ const ButtonTeste = styled(RectButton)`
   justify-content: center;
   height: 50px;
   border-radius: 25px;
+  position: absolute;
 `;
 
 const Text = styled.Text`
