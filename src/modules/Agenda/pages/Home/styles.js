@@ -40,6 +40,8 @@ export const ContatoCard = styled.TouchableOpacity`
   flex-direction: row;
   margin: 10px 0;
   background: rgba(230, 230, 230, 0.1);
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
 `;
 
 export const ContatoText = styled.Text.attrs({
