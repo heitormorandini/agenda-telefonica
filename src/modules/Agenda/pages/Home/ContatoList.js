@@ -1,18 +1,13 @@
-import React, { useEffect } from 'react';
-import { FlatList, View, Text } from 'react-native';
-import avatar from '~/assets/matthew.png';
+import React from 'react';
 
 import Avatar from '~/components/Avatar';
 
 import { List, ContatoCard, ContatoText } from './styles';
 
-export default function ContatoList({ navigation, info, setInfo }) {
-  const { contacts } = info;
-  const { setContacts } = setInfo;
+import { useSelector } from 'react-redux';
 
-  useEffect(() => {
-    console.tron.log(info)
-  }, [])
+export default function ContatoList({ navigation, info }) {
+  const contacts = useSelector(state => state.agenda.contactList);
 
   function handleNavigation(item) {
     navigation.navigate('EditProfile', { item });
@@ -20,12 +15,12 @@ export default function ContatoList({ navigation, info, setInfo }) {
 
   return (
     <List
-      data={info.contacts}
-      keyExtractor={(item) => `${item.nome + item.id}`}
+      data={contacts || []}
+      keyExtractor={(item) => `${item.name + item.id}`}
       renderItem={({ item }) => (
         <ContatoCard onPress={() => handleNavigation(item)}>
-          <Avatar source={avatar} size={50} />
-          <ContatoText>{item.nome}</ContatoText>
+          <Avatar source={null} size={50} name={item.name} />
+          <ContatoText>{item.name}</ContatoText>
         </ContatoCard>
       )}
       contentContainerStyle={{ paddingBottom: 50 }}

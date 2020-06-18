@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { Text } from 'react-native';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 
 import avatar from '~/assets/matthew.png';
 
@@ -9,27 +9,16 @@ import BottomButton from '~/components/BottomButton';
 
 import { Header, HeaderText } from './styles';
 import ContatoList from './ContatoList';
+import { getContactListRequest } from "~/store/modules/agenda/actions";
 
 export default function Home({ navigation }) {
-  const [contacts, setContacts] = useState([
-    {
-      "id": 4,
-      "nome": "Aiesha Sears"
-    },
-    {
-      "id": 3,
-      "nome": "Ajay Chapman"
-    },
-    {
-      "id": 1,
-      "nome": "Arman Connolly"
-    },
-    {
-      "id": 2,
-      "nome": "Aryaan Mckinney"
-    },
-  ]);
 
+  const dispatch = useDispatch();
+
+  const teste = useSelector(state => state.agenda);
+  useEffect(() => {
+    dispatch(getContactListRequest());
+  }, []);
 
   const handleAddButtom = () => {
     navigation.navigate('EditProfile', {});
@@ -42,8 +31,8 @@ export default function Home({ navigation }) {
         <HeaderText>Lista Telefônica</HeaderText>
       </Header>
 
-      <ContatoList info={{ contacts }} setInfo={{ setContacts }} navigation={navigation} />
-      <BottomButton text="Adicionar Novo" onPress={handleAddButtom} />
+      <ContatoList navigation={navigation} />
+      <BottomButton text="Novo Contato" onPress={handleAddButtom} />
     </Background>
   );
 }
