@@ -1,7 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { View } from 'react-native';
+import React, { useRef } from 'react';
 
-import { Input, PhoneInput } from './styles';
+import { Input, PhoneInput, FormView } from './styles';
 
 export default function Form({ info, setInfo }) {
   const addressRef = useRef();
@@ -9,7 +8,7 @@ export default function Form({ info, setInfo }) {
   const emailRef = useRef();
 
   return (
-    <View>
+    <FormView>
       <Input
         autoCorrect={false}
         autoCapitalize='words'
@@ -50,6 +49,6 @@ export default function Form({ info, setInfo }) {
         returnKeyType="send"
         ref={addressRef}
       />
-    </View>
+    </FormView>
   );
 }
